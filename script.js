@@ -2,7 +2,10 @@
 
 // Usar la variable PRODUCTS si existe (cargada desde products.js)
 const products = window.PRODUCTS || [];
-
+const imageModal = document.getElementById("imageModal");
+const closeImageModalBtn = document.getElementById("closeImageModal");
+const modalImage = document.getElementById("modalImage");
+const imageModalTitle = document.getElementById("imageModalTitle");
 const productsGrid = document.getElementById("productsGrid");
 const searchInput = document.getElementById("searchInput");
 const clearSearchBtn = document.getElementById("clearSearch");
@@ -15,11 +18,12 @@ const cartListEl = document.getElementById("cartList");
 const cartTotalEl = document.getElementById("cartTotal");
 const closeCartBtn = document.getElementById("closeCart");
 const btnNequi = document.getElementById("btnNequi");
-
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 // Apuntando a los nuevos elementos del header
 const cartToggle = document.getElementById("headerCartButton"); 
 const cartCountEl = document.getElementById("headerCartBadge"); 
 const openInfoFormBtn = document.getElementById("openInfoFormBtn"); // Botón de Solicitar Info
+const loginBtn = document.getElementById("loginBtn"); // NUEVO Botón de Iniciar Sesión
 
 // Toast utils
 let toastContainer = null;
@@ -171,6 +175,102 @@ openInfoFormBtn?.addEventListener("click", () => {
     infoModal.setAttribute("aria-hidden", "false");
 });
 
+// Evento para el nuevo botón "Iniciar Sesión"
+loginBtn?.addEventListener("click", () => {
+    // --- script.js ---
+
+// 1. DEFINICIÓN DE VARIABLES (Agrégalas al inicio junto con las otras const)
+const loginBtn = document.getElementById("loginBtn");
+const loginModal = document.getElementById("loginModal");
+const closeLoginBtn = document.getElementById("closeLogin");
+const loginForm = document.getElementById("loginForm");
+
+// 2. LÓGICA DEL LOGIN (Pega esto donde manejas los eventos, reemplazando el alert anterior)
+
+// Abrir modal al hacer clic en "Iniciar Sesión"
+loginBtn?.addEventListener("click", () => {
+    // Si ya está logueado (simulado), cerramos sesión
+    if (loginBtn.classList.contains("is-logged-in")) {
+        const confirmLogout = confirm("¿Deseas cerrar sesión?");
+        if (confirmLogout) {
+            loginBtn.innerHTML = "👤 Iniciar Sesión";
+            loginBtn.classList.remove("is-logged-in");
+            showToast("Sesión cerrada correctamente");
+        }
+        return;
+    }
+    // Si no, abrimos modal
+    loginModal.classList.add("open");
+    loginModal.setAttribute("aria-hidden", "false");
+});
+
+// Cerrar modal
+closeLoginBtn?.addEventListener("click", () => {
+    loginModal.classList.remove("open");
+    loginModal.setAttribute("aria-hidden", "true");
+});
+
+// Cerrar al dar clic fuera
+loginModal?.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal__backdrop")) {
+        loginModal.classList.remove("open");
+        loginModal.setAttribute("aria-hidden", "true");
+    }
+});
+
+// PROCESAR EL LOGIN (Simulación)
+loginForm?.addEventListener("submit", (e) => {
+    e.preventDefault(); // Evita que la página se recargue
+    
+    const email = document.getElementById("loginEmail").value;
+    // Aquí podrías validar contraseña real si tuvieras backend
+    
+    if (email) {
+        // Simular éxito
+        showToast(`¡Bienvenido, ${email.split('@')[0]}!`);
+        
+        // Cambiar el botón del header
+        loginBtn.innerHTML = `👤 Hola, ${email.split('@')[0]}`;
+        loginBtn.classList.add("is-logged-in");
+        
+        // Cerrar modal
+        loginModal.classList.remove("open");
+        loginModal.setAttribute("aria-hidden", "true");
+        
+        // Limpiar formulario
+        loginForm.reset();
+    }
+});
+});
+
+googleLoginBtn?.addEventListener("click", () => {
+    // Simulamos un tiempo de espera como si conectara con Google
+    const originalText = googleLoginBtn.innerHTML;
+    googleLoginBtn.innerHTML = "Conectando...";
+    
+    setTimeout(() => {
+        // Simular éxito
+        showToast("¡Sesión iniciada con Google!");
+        
+        // Cambiar el botón del header usando un nombre simulado
+        // (En una app real, Google te daría el nombre del usuario)
+        if(loginBtn) {
+            loginBtn.innerHTML = `👤 Hola, Usuario Google`;
+            loginBtn.classList.add("is-logged-in");
+        }
+
+        // Cerrar modal
+        if(loginModal) {
+            loginModal.classList.remove("open");
+            loginModal.setAttribute("aria-hidden", "true");
+        }
+
+        // Restaurar texto del botón por si se vuelve a abrir
+        googleLoginBtn.innerHTML = originalText;
+        
+    }, 1000); // 1 segundo de "carga"
+});
+
 closeInfoFormBtn?.addEventListener("click", () => {
     infoModal.classList.remove("open");
     infoModal.setAttribute("aria-hidden", "true");
@@ -258,8 +358,12 @@ function renderCart() {
 
 productsGrid?.addEventListener("click", (e) => {
     const btn = e.target.closest(".add-to-cart");
+    const img = e.target.closest(".product-image"); // Nuevo: detectar clic en la imagen
+    
     if (btn) {
         addToCart(btn.dataset.id);
+    } else if (img) { // Si se hizo clic en una imagen de producto
+        openImageModal(img.src, img.alt);
     }
 });
 
@@ -366,13 +470,52 @@ document.addEventListener("dblclick", (e) => {
     if (url) { imageOverrides[key] = url; saveImageOverrides(); img.src = url; showToast("Imagen actualizada"); }
 });
 
+// --- script.js (Reemplazar el listener del slider de descuentos) ---
+
 document.querySelector("#descuento .discount-slider")?.addEventListener("click", (e) => {
-    const b = e.target.closest(".buy-discount");
-    if (!b) return;
-    addCustomToCart({ id: b.dataset.id, name: b.dataset.name, price: Number(b.dataset.price) });
+    // 1. Lógica para el botón "Comprar"
+    const btn = e.target.closest(".buy-discount");
+    if (btn) {
+        addCustomToCart({ 
+            id: btn.dataset.id, 
+            name: btn.dataset.name, 
+            price: Number(btn.dataset.price) 
+        });
+        return; // Terminamos aquí si fue un botón
+    }
+
+    // 2. Lógica para la Imagen (NUEVO)
+    const img = e.target.closest(".slide-media img");
+    if (img) {
+        // Usamos la misma función que creamos para el catálogo
+        openImageModal(img.src, img.alt || "Oferta especial");
+    }
 });
 
 // Cargar el estado inicial del carrito (contador) al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     renderCart();
+});
+
+// Función para abrir el modal de imagen
+function openImageModal(src, alt) {
+    modalImage.src = src;
+    modalImage.alt = alt;
+    imageModalTitle.textContent = alt; // Establecer el título del modal
+    imageModal.classList.add("open");
+    imageModal.setAttribute("aria-hidden", "false");
+}
+
+// Cerrar el modal de imagen al hacer clic en el botón
+closeImageModalBtn?.addEventListener("click", () => {
+    imageModal.classList.remove("open");
+    imageModal.setAttribute("aria-hidden", "true");
+});
+
+// Cerrar el modal de imagen al hacer clic en el backdrop
+imageModal?.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal__backdrop")) {
+        imageModal.classList.remove("open");
+        imageModal.setAttribute("aria-hidden", "true");
+    }
 });

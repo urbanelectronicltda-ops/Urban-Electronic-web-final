@@ -39,36 +39,36 @@ window.PRODUCT_IMAGES = {
   // 1: "/a/3ec965d3-eb2b-46f9-99a1-dc6ed674b346" // (ejemplo ya usado en el producto)
   1: "img/celulares/Apple_iphone_13_pro_max.png",
   2: "img/celulares/Iphone_11_pro_max.png",
-  3:"img/celulares/Redmi_Xiaomi_13C.png",
-  4:"img/celulares/SAMSUNG_Galaxy_A15.png",
-  5:"img/celulares/SAMSUNG_Galaxy_S22.png",
-  6:"img/celulares/SAMSUNG_Galaxy_S24.png",
-  7:"img/celulares/Xiaomi_Redmi_Note_13.png",
+  3: "img/celulares/Redmi_Xiaomi_13C.png",
+  4: "img/celulares/SAMSUNG_Galaxy_A15.png",
+  5: "img/celulares/SAMSUNG_Galaxy_S22.png",
+  6: "img/celulares/SAMSUNG_Galaxy_S24.png",
+  7: "img/celulares/Xiaomi_Redmi_Note_13.png",
 
-  8:"img/cartera/Cartera_magnetica.png",
+  8: "img/cartera/Cartera_magnetica.png",
 
-  9:"img/relojes/Reloj_Inteligente.png",
-  10:"img/relojes/Xiaomi_Mi_Smart_Band_10.png",
+  9: "img/relojes/Reloj_Inteligente.png",
+  10: "img/relojes/Xiaomi_Mi_Smart_Band_10.png",
 
-  11:"img/audifonos/Audifonos.png",
-  12:"img/audifonos/Avantree_Conjunto.png",
-  13:"img/audifonos/Philips.png",
-  14:"img/audifonos/Zihnic.png",
+  11: "img/audifonos/Audifonos.png",
+  12: "img/audifonos/Avantree_Conjunto.png",
+  13: "img/audifonos/Philips.png",
+  14: "img/audifonos/Zihnic.png",
 
-  15:"img/impresoras/Brother_Work_Smart_1410.png",
-  16:"img/impresoras/HP_DeskJet_Plus_4152.png",
-  17:"img/impresoras/HP_LaserJet_MFP.png",
+  15: "img/impresoras/Brother_Work_Smart_1410.png",
+  16: "img/impresoras/HP_DeskJet_Plus_4152.png",
+  17: "img/impresoras/HP_LaserJet_MFP.png",
 
-  18:"img/tablets/SAMSUNG_Galaxy_Tab_A9.png",
-  19:"img/tablets/Tablet_Android_14.png",
-  20:"img/tablets/Tablet_Android_15.png",
+  18: "img/tablets/SAMSUNG_Galaxy_Tab_A9.png",
+  19: "img/tablets/Tablet_Android_14.png",
+  20: "img/tablets/Tablet_Android_15.png",
 
-  21:"img/computadores/Laptop_2025.png",
-  22:"img/computadores/Laptop_BrightView.png",
-  23:"img/computadores/Lenovo_IdeaPad_1.png",
-  24:"img/computadores/Surface_Laptop_4.png",
+  21: "img/computadores/Laptop_2025.png",
+  22: "img/computadores/Laptop_BrightView.png",
+  23: "img/computadores/Lenovo_IdeaPad_1.png",
+  24: "img/computadores/Surface_Laptop_4.png",
 
-  25:"img/cargadores/Cargador_para_iphone.png"
+  25: "img/cargadores/Cargador_para_iphone.png"
 };
 
 // Para los slides de descuento: usa las claves d1, d2, d3, etc.
