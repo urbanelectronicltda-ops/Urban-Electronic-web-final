@@ -2,6 +2,7 @@
     --blue-900: #0b2c5f;
     --blue-700: #123e7a;
     --blue-500: #1e57a6;
+    --green: #1ABC9C;
     --gray-100: #f5f6f7;
     --gray-200: #eceff3;
     --gray-400: #c8cdd4;
@@ -93,7 +94,7 @@ body {
 }
 
 .header__search input:focus {
-    border-color: var(--blue-500);
+    border-color: var(--green);
     box-shadow: 0 0 0 3px rgba(30, 87, 166, 0.15);
 }
 
@@ -125,7 +126,7 @@ body {
 
 .nav-btn:hover,
 .nav-btn.active {
-    background-color: var(--blue-500);
+    background-color: var(--green);
     color: var(--white);
 }
 
@@ -177,22 +178,22 @@ body {
 }
 
 .btn--secondary {
-    border-color: var(--blue-500);
+    border-color: var(--green);
     color: var(--blue-900);
 }
 
 .btn--cart {
     position: relative;
-    background: var(--blue-500);
-    border-color: var(--blue-500);
+    background: var(--green);
+    border-color: var(--green);
     color: var(--white);
     font-size: 1.2rem;
     padding: 6px 10px;
 }
 
 .btn--cart:hover {
-    background: var(--blue-700);
-    border-color: var(--blue-700);
+    background: var(--green);
+    border-color: var(--green);
     color: var(--white);
 }
 
@@ -213,21 +214,21 @@ body {
 }
 
 .btn--info {
-    background: var(--white);
+    background: var(--green);
     border-color: var(--gray-400);
-    color: var(--blue-900);
+    color: var(--white);
     font-weight: 600;
 }
 
 .btn--info:hover {
     background: var(--gray-100);
-    border-color: var(--blue-500);
+    border-color: var(--green);
 }
 
 /* NUEVO: Estilo Botón Iniciar Sesión */
 .btn--login {
-    background: var(--blue-700);
-    border-color: var(--blue-700);
+    background: var(--green);
+    border-color: var(--green);
     color: var(--white);
     font-weight: 600;
 }
